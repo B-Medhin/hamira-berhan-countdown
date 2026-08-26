@@ -108,10 +108,37 @@
     }
     .page-wrapper.banner-open { padding-top: 65px; }
 
+    /* TOP BAR WITH ADMIN ACCESS */
+    .top-bar {
+      width: 100%; max-width: 960px;
+      display: flex; justify-content: flex-end;
+      padding: 14px 0 0;
+    }
+    .admin-open-btn {
+      background: rgba(20, 6, 0, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      color: var(--gold-light);
+      padding: 6px 18px;
+      font-family: var(--font-eth);
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+    .admin-open-btn:hover {
+      background: var(--gold);
+      color: var(--parchment);
+      border-color: var(--gold);
+      box-shadow: 0 0 18px rgba(245, 200, 66, 0.6);
+      font-weight: bold;
+    }
+
     /* HEADER & LOGOS */
     header {
       width: 100%; max-width: 960px;
-      padding: 40px 0 20px;
+      padding: 24px 0 20px;
       display: flex; flex-direction: column; align-items: center;
     }
     .logo-row {
@@ -479,12 +506,175 @@
       100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
     }
 
+    /* ═══════════════════════════════════════════════════
+       ADMIN MODAL & DASHBOARD STYLES
+    ═══════════════════════════════════════════════════ */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(10, 3, 0, 0.82);
+      backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-backdrop.active {
+      opacity: 1; pointer-events: auto;
+    }
+    .admin-card {
+      width: 100%; max-width: 650px;
+      max-height: 90vh; overflow-y: auto;
+      background: linear-gradient(170deg, rgba(36, 12, 0, 0.95) 0%, rgba(18, 5, 0, 0.98) 100%);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      box-shadow: 0 0 50px rgba(245, 200, 66, 0.4), inset 0 1px 0 rgba(245, 200, 66, 0.2);
+      position: relative;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+    .modal-backdrop.active .admin-card {
+      transform: scale(1);
+    }
+    .modal-close-btn {
+      position: absolute; right: 20px; top: 20px;
+      background: none; border: none; color: var(--gold-light);
+      font-size: 1.4rem; cursor: pointer; opacity: 0.8;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .modal-close-btn:hover {
+      opacity: 1; transform: scale(1.15);
+    }
+    .admin-title {
+      font-family: var(--font-eth);
+      font-size: 1.45rem;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 6px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .admin-subtitle {
+      font-family: var(--font-latin);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-light); opacity: 0.7;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-label {
+      display: block;
+      font-family: var(--font-eth);
+      font-size: 0.9rem;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+    }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      background: rgba(10, 3, 0, 0.75);
+      border: 1px solid rgba(245, 200, 66, 0.35);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      padding: 10px 14px;
+      font-family: var(--font-eth);
+      font-size: 0.95rem;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 12px rgba(245, 200, 66, 0.4);
+    }
+    .form-textarea { resize: vertical; min-height: 75px; }
+    .admin-btn-primary {
+      width: 100%;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+      border: none; border-radius: 50px;
+      color: var(--parchment);
+      padding: 12px 24px;
+      font-family: var(--font-eth);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(245, 200, 66, 0.35);
+      margin-top: 8px;
+    }
+    .admin-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(245, 200, 66, 0.6);
+    }
+    .admin-btn-secondary {
+      background: rgba(245, 200, 66, 0.12);
+      border: 1px solid rgba(245, 200, 66, 0.35);
+      border-radius: 50px;
+      color: var(--gold-light);
+      padding: 8px 18px;
+      font-family: var(--font-eth);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .admin-btn-secondary:hover {
+      background: rgba(245, 200, 66, 0.25);
+      border-color: var(--gold);
+      color: #fff;
+    }
+    .admin-alert {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: var(--font-eth);
+      font-size: 0.88rem;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .admin-alert.error {
+      background: rgba(192, 57, 43, 0.35);
+      border: 1px solid var(--crimson-mid);
+      color: #ff9999;
+    }
+    .admin-alert.success {
+      background: rgba(39, 174, 96, 0.3);
+      border: 1px solid #27ae60;
+      color: #88ffbb;
+    }
+    .admin-tabs {
+      display: flex; gap: 8px;
+      border-bottom: 1px solid rgba(245, 200, 66, 0.25);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+    }
+    .admin-tab-btn {
+      background: none; border: none;
+      color: var(--gold-light); opacity: 0.6;
+      font-family: var(--font-eth);
+      font-size: 0.92rem;
+      padding: 6px 14px; cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .admin-tab-btn.active {
+      opacity: 1; color: var(--gold);
+      background: rgba(245, 200, 66, 0.15);
+      font-weight: 600;
+    }
+    .admin-tab-content { display: none; }
+    .admin-tab-content.active { display: block; }
+    .admin-header-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 14px;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 580px) {
       .timer-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .timer-box { aspect-ratio: 1 / 0.92; max-width: 100%; }
       .logo-img { height: 95px; width: 95px; }
       .countdown-card { padding: 26px 16px 30px; }
+      .admin-card { padding: 24px 16px; }
     }
   </style>
 </head>
@@ -507,6 +697,13 @@
 <div id="particles-container" aria-hidden="true"></div>
 
 <div class="page-wrapper" id="page-wrapper">
+
+  <!-- TOP BAR WITH ADMIN ACCESS -->
+  <div class="top-bar">
+    <button class="admin-open-btn" id="admin-open-btn" onclick="openAdminModal()">
+      ⚙️ አስተዳዳሪ / Admin Panel
+    </button>
+  </div>
 
   <header>
     <div class="logo-row">
@@ -633,6 +830,109 @@
 
 </div>
 
+<!-- ═══════════════════════════════════════════════════
+     PASSWORD PROTECTED ADMIN MODAL
+═══════════════════════════════════════════════════ -->
+<div class="modal-backdrop" id="admin-modal">
+  <div class="admin-card">
+    <button class="modal-close-btn" onclick="closeAdminModal()" aria-label="Close modal">✕</button>
+    
+    <!-- LOGIN VIEW -->
+    <div id="admin-login-view">
+      <div class="admin-title">🔒 የአስተዳዳሪ መግቢያ</div>
+      <div class="admin-subtitle">Admin Authentication</div>
+      
+      <div class="admin-alert error" id="login-error">የይለፍ ቃል የተሳሳተ ነው! / Incorrect password.</div>
+      
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="admin-pass">የአስተዳዳሪ የይለፍ ቃል (Password):</label>
+          <input type="password" id="admin-pass" class="form-input" placeholder="ይለፍ ቃል ያስገቡ..." required autofocus />
+        </div>
+        <button type="submit" class="admin-btn-primary">ግባ / Log In</button>
+      </form>
+    </div>
+
+    <!-- DASHBOARD VIEW -->
+    <div id="admin-dash-view" style="display:none;">
+      <div class="admin-header-row">
+        <div>
+          <div class="admin-title" style="text-align:left; font-size:1.3rem;">⚙️ የአስተዳዳሪ ክፍል</div>
+          <div class="admin-subtitle" style="text-align:left; margin-bottom:0;">Admin Control Center</div>
+        </div>
+        <button class="admin-btn-secondary" onclick="handleAdminLogout()">ውጣ / Logout</button>
+      </div>
+
+      <!-- TABS -->
+      <div class="admin-tabs">
+        <button class="admin-tab-btn active" id="tab-btn-publish" onclick="switchAdminTab('publish')">✨ መልዕክት አውጣ (Inspiration)</button>
+        <button class="admin-tab-btn" id="tab-btn-banner" onclick="switchAdminTab('banner')">📣 ባነር ማሳወቂያ (Banner)</button>
+        <button class="admin-tab-btn" id="tab-btn-settings" onclick="switchAdminTab('settings')">🔑 የይለፍ ቃል (Settings)</button>
+      </div>
+
+      <div class="admin-alert success" id="dash-success"></div>
+
+      <!-- TAB 1: PUBLISH INSPIRATION -->
+      <div class="admin-tab-content active" id="tab-content-publish">
+        <form onsubmit="handlePublishInspiration(event)">
+          <div class="form-group">
+            <label class="form-label">የሚለጠፍበት ዕለት (Target Schedule):</label>
+            <select id="insp-day-select" class="form-select">
+              <option value="today">⭐ ዛሬ ብቻ (Today Only)</option>
+              <option value="0">እሑድ (Sunday)</option>
+              <option value="1">ሰኞ (Monday)</option>
+              <option value="2">ማክሰኞ (Tuesday)</option>
+              <option value="3">ረቡዕ (Wednesday)</option>
+              <option value="4">ሐሙስ (Thursday)</option>
+              <option value="5">ዓርብ (Friday)</option>
+              <option value="6">ቅዳሜ (Saturday)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">የዕለቱ መልዕክት በአማርኛ / ግዕዝ (Amharic Message):</label>
+            <textarea id="insp-eth-input" class="form-textarea" placeholder="የዕለቱን መንፈሳዊ ወይም አነቃቂ መልዕክት እዚህ ይፃፉ..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">የእንግሊዝኛ ትርጉም (English Translation / Quote):</label>
+            <textarea id="insp-en-input" class="form-textarea" placeholder="English translation or inspirational quote..." required></textarea>
+          </div>
+          <button type="submit" class="admin-btn-primary">🚀 መልዕክቱን ወዲያውኑ አውጣ / Publish Inspiration</button>
+        </form>
+      </div>
+
+      <!-- TAB 2: CUSTOM BANNER -->
+      <div class="admin-tab-content" id="tab-content-banner">
+        <form onsubmit="handlePublishBanner(event)">
+          <div class="form-group">
+            <label class="form-label">የባነር ማሳወቂያ ጽሑፍ (Custom Top Banner Text):</label>
+            <textarea id="banner-custom-input" class="form-textarea" placeholder="ለሠራተኞች የሚተላለፍ ልዩ ማሳወቂያ ካለ እዚህ ይፃፉ (ባዶ ከተተወ ቆጣሪው በራሱ ያሳያል)..."></textarea>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button type="submit" class="admin-btn-primary" style="flex:1;">አውጣ / Update Banner</button>
+            <button type="button" class="admin-btn-secondary" style="margin-top:8px;" onclick="resetBannerToDefault()">ወደ ነባሪ መልስ / Reset</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- TAB 3: PASSWORD SETTINGS -->
+      <div class="admin-tab-content" id="tab-content-settings">
+        <form onsubmit="handleChangePassword(event)">
+          <div class="form-group">
+            <label class="form-label">አዲስ የይለፍ ቃል (New Password):</label>
+            <input type="password" id="new-pass-input" class="form-input" placeholder="አዲስ የይለፍ ቃል ያስገቡ..." required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">የይለፍ ቃል ያረጋግጡ (Confirm Password):</label>
+            <input type="password" id="confirm-pass-input" class="form-input" placeholder="የይለፍ ቃሉን በድጋሚ ያስገቡ..." required />
+          </div>
+          <button type="submit" class="admin-btn-primary">ቀይር / Change Password</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
 /* ═══════════════════════════════════════════════════
    GE'EZ NUMERAL CONVERTER
@@ -667,11 +967,8 @@ function gregorianToEthiopian(date) {
   const gMonth = date.getMonth(); // 0-11
   const gDay = date.getDate();
 
-  // UTC timestamps for accurate day differences
   const utcNow = Date.UTC(gYear, gMonth, gDay);
   
-  // Ethiopian New Year for 2018 E.C. started on Sep 11, 2025
-  // Ethiopian New Year for 2019 E.C. starts on Sep 11, 2026
   let ethYear = gYear - 8;
   let ethNewYearUtc = Date.UTC(gYear - 1, 8, 11);
   
@@ -681,13 +978,10 @@ function gregorianToEthiopian(date) {
   }
 
   const diffDays = Math.floor((utcNow - ethNewYearUtc) / (86400 * 1000));
-  
   let ethMonth = Math.floor(diffDays / 30) + 1;
   let ethDay = (diffDays % 30) + 1;
 
-  if (ethMonth > 13) {
-    ethMonth = 13;
-  }
+  if (ethMonth > 13) ethMonth = 13;
 
   return { year: ethYear, month: ethMonth, day: ethDay };
 }
@@ -701,36 +995,27 @@ function formatEthDateShort(date, mode) {
     const yrStr = toGeez(Math.floor(eth.year / 100)) + '፻' + toGeez(eth.year % 100);
     return `${monthName} ${toGeez(eth.day)} · ${yrStr}`;
   } else {
-    // Both mode
     const yrGeez = toGeez(Math.floor(eth.year / 100)) + '፻' + toGeez(eth.year % 100);
     return `${monthName} ${toGeez(eth.day)} (${eth.day}) · ${yrGeez}`;
   }
 }
 
 function formatEventEthDate(mode) {
-  if (mode === 'arabic') {
-    return 'ነሐሴ 28 · 2018';
-  } else if (mode === 'geez') {
-    return 'ነሐሴ ፳፰ · ፳፻፲፰';
-  } else {
-    return 'ነሐሴ ፳፰ (28) · ፳፻፲፰';
-  }
+  if (mode === 'arabic') return 'ነሐሴ 28 · 2018';
+  if (mode === 'geez')   return 'ነሐሴ ፳፰ · ፳፻፲፰';
+  return 'ነሐሴ ፳፰ (28) · ፳፻፲፰';
 }
 
 function formatEventFullDate(mode) {
-  if (mode === 'arabic') {
-    return 'ነሐሴ 28 ቀን 2018 ዓ.ም';
-  } else if (mode === 'geez') {
-    return 'ነሐሴ ፳፰ ቀን ፳፻፲፰ ዓ.ም';
-  } else {
-    return 'ነሐሴ ፳፰ ቀን (28) ፳፻፲፰ ዓ.ም';
-  }
+  if (mode === 'arabic') return 'ነሐሴ 28 ቀን 2018 ዓ.ም';
+  if (mode === 'geez')   return 'ነሐሴ ፳፰ ቀን ፳፻፲፰ ዓ.ም';
+  return 'ነሐሴ ፳፰ ቀን (28) ፳፻፲፰ ዓ.ም';
 }
 
 /* ═══════════════════════════════════════════════════
    TARGET DATE: Nehase 28, 2018 E.C. = Thursday, Sep 03, 2026 08:00 AM
 ═══════════════════════════════════════════════════ */
-const TARGET    = new Date(2026, 8, 3, 8, 0, 0); // Month is 0-indexed (8 = September)
+const TARGET    = new Date(2026, 8, 3, 8, 0, 0); // Month 8 = September
 const ANNOUNCED = new Date(2026, 7, 10, 8, 0, 0); // August 10, 2026
 
 /* ═══════════════════════════════════════════════════
@@ -855,10 +1140,17 @@ function updateProgress(pct) {
    DAILY NOTIFICATION BANNER
 ═══════════════════════════════════════════════════ */
 const BANNER_KEY = 'hamira_banner_dismissed_';
+const CUSTOM_BANNER_KEY = 'hamira_custom_banner_text';
 
 function updateBannerText() {
   const bannerMsg = document.getElementById('banner-msg');
   if (!bannerMsg) return;
+
+  const customText = localStorage.getItem(CUSTOM_BANNER_KEY);
+  if (customText && customText.trim()) {
+    bannerMsg.textContent = customText.trim();
+    return;
+  }
 
   const diff = TARGET - new Date();
   const daysLeft = Math.max(0, Math.floor(diff / 86400000));
@@ -911,9 +1203,9 @@ function setupBanner() {
 }
 
 /* ═══════════════════════════════════════════════════
-   DAILY MOTIVATIONAL MESSAGES (Rotates Dynamically)
+   DAILY MOTIVATIONAL MESSAGES (Admin Dynamic Supported)
 ═══════════════════════════════════════════════════ */
-const DAILY_MESSAGES = [
+const DEFAULT_DAILY_MESSAGES = [
   { eth: 'ዛሬ እሑድ ነው። «ትጋትንና ፍቅርን ገንዘብ አድርጉ።» ለህፃናቱ ታላቅ ስልጠና በመንፈሳዊ ዝግጅት እንጀምር!', en: 'Sunday: Begin in prayer and dedication. Keep the spirit of readiness high for our children!' },
   { eth: 'ሰኞ — አዲስ ሳምንት፣ አዲስ ጥንካሬ። ህፃናቱን በዕውቀትና በሥነ-ምግባር ለማነጽ ሁላችንም ዝግጁ እንሁን!', en: 'Monday: A fresh start! Let us prepare with full energy to nurture the children.' },
   { eth: 'ማክሰኞ — ዝግጅት የመልካም ውጤት መሠረት ነው። እያንዳንዱ የስራ ክፍል ዝግጅቱን ያፋጥን!', en: 'Tuesday: Thorough preparation is the key to an inspiring training program.' },
@@ -923,13 +1215,187 @@ const DAILY_MESSAGES = [
   { eth: 'ቅዳሜ — የእረፍትና የዝግጅት ቀን። ለነገው መርሃ-ግብር መንፈሳዊና አካላዊ ዝግጁነታችሁን አጠናክሩ!', en: 'Saturday: Rest, reflect, and gather renewed strength for the journey ahead!' },
 ];
 
+const CUSTOM_INSP_KEY = 'hamira_custom_inspirations';
+const TODAY_OVERRIDE_KEY = 'hamira_today_inspiration_override';
+
+function getActiveInspiration() {
+  // Check if today has a specific broadcast override
+  const todayKey = TODAY_OVERRIDE_KEY + '_' + new Date().toISOString().slice(0, 10);
+  const todayOverride = localStorage.getItem(todayKey);
+  if (todayOverride) {
+    try { return JSON.parse(todayOverride); } catch(e){}
+  }
+
+  // Check custom weekly messages from admin
+  const customStr = localStorage.getItem(CUSTOM_INSP_KEY);
+  let customMap = {};
+  if (customStr) {
+    try { customMap = JSON.parse(customStr); } catch(e){}
+  }
+
+  const dayOfWeek = new Date().getDay();
+  if (customMap[dayOfWeek]) {
+    return customMap[dayOfWeek];
+  }
+
+  return DEFAULT_DAILY_MESSAGES[dayOfWeek];
+}
+
 function setDailyMessage() {
-  const day = new Date().getDay();
-  const msg = DAILY_MESSAGES[day];
+  const msg = getActiveInspiration();
   const ethEl = document.getElementById('daily-msg-eth');
   const enEl = document.getElementById('daily-msg-en');
   if (ethEl) ethEl.textContent = msg.eth;
   if (enEl) enEl.textContent  = '"' + msg.en + '"';
+}
+
+/* ═══════════════════════════════════════════════════
+   ADMIN DASHBOARD FUNCTIONALITY
+═══════════════════════════════════════════════════ */
+const ADMIN_PASS_KEY = 'hamira_admin_password';
+const DEFAULT_ADMIN_PASS = 'hamira2018';
+
+function getAdminPassword() {
+  return localStorage.getItem(ADMIN_PASS_KEY) || DEFAULT_ADMIN_PASS;
+}
+
+function openAdminModal() {
+  const modal = document.getElementById('admin-modal');
+  modal.classList.add('active');
+  
+  if (sessionStorage.getItem('hamira_admin_logged_in') === 'true') {
+    showDashboardView();
+  } else {
+    showLoginView();
+  }
+}
+
+function closeAdminModal() {
+  const modal = document.getElementById('admin-modal');
+  modal.classList.remove('active');
+}
+
+function showLoginView() {
+  document.getElementById('admin-login-view').style.display = 'block';
+  document.getElementById('admin-dash-view').style.display = 'none';
+  document.getElementById('login-error').style.display = 'none';
+  const passInput = document.getElementById('admin-pass');
+  if (passInput) passInput.value = '';
+}
+
+function showDashboardView() {
+  document.getElementById('admin-login-view').style.display = 'none';
+  document.getElementById('admin-dash-view').style.display = 'block';
+  document.getElementById('dash-success').style.display = 'none';
+  
+  // Pre-fill custom banner input if exists
+  const customBanner = localStorage.getItem(CUSTOM_BANNER_KEY) || '';
+  document.getElementById('banner-custom-input').value = customBanner;
+}
+
+function handleAdminLogin(e) {
+  e.preventDefault();
+  const inputPass = document.getElementById('admin-pass').value;
+  const actualPass = getAdminPassword();
+
+  if (inputPass === actualPass) {
+    sessionStorage.setItem('hamira_admin_logged_in', 'true');
+    showDashboardView();
+  } else {
+    const err = document.getElementById('login-error');
+    err.style.display = 'block';
+    err.textContent = 'የይለፍ ቃል የተሳሳተ ነው! / Incorrect password.';
+  }
+}
+
+function handleAdminLogout() {
+  sessionStorage.removeItem('hamira_admin_logged_in');
+  showLoginView();
+}
+
+function switchAdminTab(tabName) {
+  ['publish', 'banner', 'settings'].forEach(t => {
+    document.getElementById('tab-btn-' + t).classList.toggle('active', t === tabName);
+    document.getElementById('tab-content-' + t).classList.toggle('active', t === tabName);
+  });
+  document.getElementById('dash-success').style.display = 'none';
+}
+
+function showAdminNotice(text) {
+  const alertBox = document.getElementById('dash-success');
+  alertBox.style.display = 'block';
+  alertBox.textContent = text;
+  setTimeout(() => { alertBox.style.display = 'none'; }, 4500);
+}
+
+function handlePublishInspiration(e) {
+  e.preventDefault();
+  const targetDay = document.getElementById('insp-day-select').value;
+  const ethMsg = document.getElementById('insp-eth-input').value.trim();
+  const enMsg = document.getElementById('insp-en-input').value.trim();
+
+  if (!ethMsg || !enMsg) return;
+
+  const newInsp = { eth: ethMsg, en: enMsg };
+
+  if (targetDay === 'today') {
+    const todayKey = TODAY_OVERRIDE_KEY + '_' + new Date().toISOString().slice(0, 10);
+    localStorage.setItem(todayKey, JSON.stringify(newInsp));
+  } else {
+    const customStr = localStorage.getItem(CUSTOM_INSP_KEY);
+    let customMap = {};
+    if (customStr) {
+      try { customMap = JSON.parse(customStr); } catch(err){}
+    }
+    customMap[targetDay] = newInsp;
+    localStorage.setItem(CUSTOM_INSP_KEY, JSON.stringify(customMap));
+  }
+
+  // Update on active page dynamically
+  setDailyMessage();
+  showAdminNotice('✅ የዕለቱ መልዕክት በተሳካ ሁኔታ ወጥቷል! / Inspiration published dynamically!');
+  
+  document.getElementById('insp-eth-input').value = '';
+  document.getElementById('insp-en-input').value = '';
+}
+
+function handlePublishBanner(e) {
+  e.preventDefault();
+  const customBanner = document.getElementById('banner-custom-input').value.trim();
+  if (customBanner) {
+    localStorage.setItem(CUSTOM_BANNER_KEY, customBanner);
+  } else {
+    localStorage.removeItem(CUSTOM_BANNER_KEY);
+  }
+  updateBannerText();
+  showAdminNotice('✅ የባነር ማሳወቂያው ተዘምኗል! / Notification banner updated dynamically!');
+}
+
+function resetBannerToDefault() {
+  localStorage.removeItem(CUSTOM_BANNER_KEY);
+  document.getElementById('banner-custom-input').value = '';
+  updateBannerText();
+  showAdminNotice('✅ ባነሩ ወደ ነባሪ ቆጣሪ ተመልሷል! / Banner reset to automatic countdown!');
+}
+
+function handleChangePassword(e) {
+  e.preventDefault();
+  const newPass = document.getElementById('new-pass-input').value;
+  const confirmPass = document.getElementById('confirm-pass-input').value;
+
+  if (newPass.length < 4) {
+    alert('የይለፍ ቃሉ ቢያንስ 4 ፊደላት ወይም ቁጥሮች መሆን አለበት።');
+    return;
+  }
+  if (newPass !== confirmPass) {
+    alert('የይለፍ ቃሎቹ አይመሳሰሉም! / Passwords do not match.');
+    return;
+  }
+
+  localStorage.setItem(ADMIN_PASS_KEY, newPass);
+  document.getElementById('new-pass-input').value = '';
+  document.getElementById('confirm-pass-input').value = '';
+  showAdminNotice('✅ የአስተዳዳሪ የይለፍ ቃል በተሳካ ሁኔታ ተቀይሯል! / Password changed successfully!');
 }
 
 /* ═══════════════════════════════════════════════════
