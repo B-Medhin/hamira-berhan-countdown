@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ሐመረ ብርሃን ቅዱስ ዮሐንስ አፈ ወርቅ – የህፃናት የክረምት ስልጠና መርሃ-ግብር</title>
+  <meta name="description" content="Hamira Berhan & Kidus Yared Saphoric Children's Summer Training Program — Official Staff Countdown" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wdth,wght@75..125,100..900&family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #f5c842;
+      --gold-light: #ffe98a;
+      --gold-dark: #b8860b;
+      --crimson: #8b0000;
+      --crimson-mid: #c0392b;
+      --crimson-soft: #e84040;
+      --parchment: #1a0800;
+      --white: #fff8e7;
+      --glass-bg: rgba(20, 6, 0, 0.72);
+      --glass-border: rgba(245, 200, 66, 0.32);
+      --shadow-gold: 0 0 45px rgba(245, 200, 66, 0.35);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-eth: 'Noto Serif Ethiopic', serif;
+      --font-latin: 'Cinzel', serif;
+      --font-body: 'EB Garamond', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: var(--parchment);
+      color: var(--white);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* BACKGROUND */
+    .bg-image {
+      position: fixed; inset: 0;
+      background: url('bg.jpg') center/cover no-repeat;
+      z-index: 0;
+    }
+    .bg-overlay {
+      position: fixed; inset: 0;
+      background: radial-gradient(circle at center, rgba(26, 8, 0, 0.55) 0%, rgba(10, 3, 0, 0.85) 100%),
+                  linear-gradient(180deg, rgba(10, 3, 0, 0.7) 0%, rgba(10, 3, 0, 0.9) 100%);
+      z-index: 1;
+    }
+    .bg-radiance {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 850px; height: 850px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 200, 66, 0.12) 0%, rgba(184, 134, 11, 0.05) 45%, transparent 70%);
+      z-index: 1;
+      animation: radiancePulse 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes radiancePulse {
+      0%, 100% { opacity: 0.6; transform: translate(-50%,-50%) scale(0.95); }
+      50%       { opacity: 1;   transform: translate(-50%,-50%) scale(1.15); }
+    }
+
+    /* NOTIFICATION BANNER */
+    #notification-banner {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: linear-gradient(90deg, var(--crimson) 0%, #6b0f0f 45%, #6b0f0f 55%, var(--crimson) 100%);
+      border-bottom: 2px solid var(--gold);
+      padding: 12px 60px 12px 24px;
+      display: flex; align-items: center; gap: 14px;
+      animation: bannerSlide 0.5s ease-out;
+      box-shadow: 0 6px 30px rgba(139, 0, 0, 0.65);
+    }
+    @keyframes bannerSlide {
+      from { transform: translateY(-100%); opacity: 0; }
+      to   { transform: translateY(0);     opacity: 1; }
+    }
+    .banner-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .banner-text {
+      flex: 1;
+      font-family: var(--font-eth);
+      font-size: 0.98rem;
+      line-height: 1.4;
+      color: var(--gold-light);
+    }
+    .banner-text strong { color: #fff; }
+    .banner-dismiss {
+      position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: var(--gold-light);
+      cursor: pointer; font-size: 1.4rem; line-height: 1; opacity: 0.85;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .banner-dismiss:hover { opacity: 1; transform: translateY(-50%) scale(1.15); }
+    #notification-banner.hidden { display: none; }
+
+    /* LAYOUT */
+    .page-wrapper {
+      position: relative; z-index: 10;
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 16px 60px;
+    }
+    .page-wrapper.banner-open { padding-top: 65px; }
+
+    /* HEADER & LOGOS */
+    header {
+      width: 100%; max-width: 960px;
+      padding: 40px 0 20px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .logo-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 36px; flex-wrap: wrap;
+    }
+    .logo-wrap {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-wrap::before {
+      content: '';
+      position: absolute; inset: -10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 200, 66, 0.28) 0%, transparent 70%);
+      animation: logoGlow 4s ease-in-out infinite;
+    }
+    @keyframes logoGlow {
+      0%, 100% { opacity: 0.5; }
+      50%       { opacity: 1; }
+    }
+    .logo-img {
+      height: 130px; width: 130px;
+      object-fit: contain;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 20px rgba(245, 200, 66, 0.55));
+      position: relative; z-index: 1;
+      transition: filter 0.3s, transform 0.3s;
+      background: rgba(20, 6, 0, 0.4);
+      padding: 4px;
+      border: 1px solid rgba(245, 200, 66, 0.4);
+    }
+    .logo-img:hover {
+      filter: drop-shadow(0 0 35px rgba(245, 200, 66, 0.9));
+      transform: scale(1.06);
+    }
+    .logo-divider {
+      display: flex; flex-direction: column; align-items: center;
+      color: var(--gold);
+    }
+    .cross-symbol {
+      font-size: 2.2rem;
+      animation: crossPulse 3s ease-in-out infinite;
+    }
+    @keyframes crossPulse {
+      0%, 100% { text-shadow: 0 0 10px rgba(245, 200, 66, 0.4); }
+      50%       { text-shadow: 0 0 30px rgba(245, 200, 66, 1); }
+    }
+
+    /* TITLE SECTION */
+    .title-section { text-align: center; margin-top: 26px; }
+    .org-name-eth {
+      font-family: var(--font-eth);
+      font-size: clamp(1.6rem, 4.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-shadow: 0 0 25px rgba(245, 200, 66, 0.65);
+      line-height: 1.3;
+    }
+    .org-name-en {
+      font-family: var(--font-latin);
+      font-size: clamp(0.75rem, 2vw, 1.05rem);
+      color: var(--gold-light);
+      opacity: 0.85;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .decorative-rule {
+      margin: 18px auto;
+      width: 280px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--crimson-soft), var(--gold), transparent);
+      border-radius: 2px; position: relative;
+    }
+    .decorative-rule::before, .decorative-rule::after {
+      content: '✦'; position: absolute; top: 50%;
+      transform: translateY(-50%); color: var(--gold); font-size: 0.95rem;
+    }
+    .decorative-rule::before { left: -16px; }
+    .decorative-rule::after  { right: -16px; }
+    .event-title {
+      font-family: var(--font-eth);
+      font-size: clamp(1.15rem, 3.2vw, 1.75rem);
+      color: var(--white);
+      opacity: 0.95;
+      line-height: 1.5;
+    }
+    .event-sub {
+      font-family: var(--font-latin);
+      font-size: 0.82rem;
+      color: var(--gold-light);
+      opacity: 0.7;
+      margin-top: 4px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* ETHIOPIAN DATE BADGES */
+    .badges-row {
+      display: flex; justify-content: center; gap: 14px;
+      flex-wrap: wrap; margin-top: 20px;
+    }
+    .eth-date-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px; padding: 8px 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+    .eth-date-badge .label {
+      font-family: var(--font-latin);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold); opacity: 0.85;
+    }
+    .eth-date-badge .date-eth {
+      font-family: var(--font-eth);
+      font-size: 1.05rem;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* COUNTDOWN CARD */
+    .countdown-card {
+      width: 100%; max-width: 860px;
+      margin: 32px 0 0;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 38px 32px 42px;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-gold), inset 0 1px 0 rgba(245, 200, 66, 0.15);
+      position: relative; overflow: hidden;
+    }
+    .countdown-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--crimson-soft), var(--gold), transparent);
+    }
+    .countdown-heading {
+      text-align: center;
+      font-family: var(--font-eth);
+      font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+      color: var(--gold-light);
+      opacity: 0.9;
+      margin-bottom: 26px;
+      letter-spacing: 0.02em;
+    }
+
+    /* NUMERAL TOGGLE */
+    .numeral-toggle {
+      display: flex; justify-content: center; gap: 10px;
+      margin-bottom: 30px;
+    }
+    .numeral-btn {
+      background: rgba(245, 200, 66, 0.12);
+      border: 1px solid rgba(245, 200, 66, 0.35);
+      border-radius: 50px;
+      color: var(--gold-light);
+      padding: 7px 22px;
+      font-family: var(--font-latin);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .numeral-btn.active, .numeral-btn:hover {
+      background: var(--gold);
+      color: var(--parchment);
+      border-color: var(--gold);
+      font-weight: 700;
+      box-shadow: 0 0 15px rgba(245, 200, 66, 0.5);
+    }
+
+    /* TIMER GRID */
+    .timer-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    }
+    .timer-unit {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .timer-box {
+      width: 100%; aspect-ratio: 1 / 1.05; max-width: 170px;
+      background: linear-gradient(160deg, rgba(61, 26, 0, 0.92) 0%, rgba(26, 8, 0, 0.98) 100%);
+      border: 1px solid rgba(245, 200, 66, 0.4);
+      border-radius: var(--radius-sm);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 4px; position: relative; overflow: hidden;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(245, 200, 66, 0.2);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .timer-box::after {
+      content: ''; position: absolute;
+      left: 0; right: 0; top: 50%; height: 1px;
+      background: rgba(245, 200, 66, 0.15);
+    }
+    .timer-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 35px rgba(245, 200, 66, 0.3), 0 6px 25px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(245, 200, 66, 0.2);
+    }
+    .num-geez {
+      font-family: var(--font-eth);
+      font-size: clamp(2rem, 5.2vw, 3.4rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      text-shadow: 0 0 25px rgba(245, 200, 66, 0.8);
+      position: relative; z-index: 1;
+    }
+    .num-arabic {
+      font-family: var(--font-latin);
+      font-size: clamp(1.7rem, 4.6vw, 3rem);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      text-shadow: 0 0 25px rgba(245, 200, 66, 0.8);
+      position: relative; z-index: 1;
+    }
+    .num-secondary {
+      font-size: clamp(0.9rem, 2vw, 1.35rem) !important;
+      opacity: 0.55;
+      text-shadow: none !important;
+    }
+    @keyframes numFlip {
+      0%   { transform: translateY(-8px); opacity: 0; }
+      100% { transform: translateY(0);    opacity: 1; }
+    }
+    .num-flip { animation: numFlip 0.35s ease-out; }
+    .unit-label-eth {
+      font-family: var(--font-eth);
+      font-size: clamp(0.78rem, 2vw, 1rem);
+      color: var(--gold-light); opacity: 0.8;
+      text-align: center;
+    }
+    .unit-label-en {
+      font-family: var(--font-latin);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold); opacity: 0.55;
+      text-align: center;
+    }
+
+    /* EVENT DATE ROW */
+    .event-date-row { text-align: center; margin-top: 32px; }
+    .event-date-row .label {
+      font-family: var(--font-latin);
+      font-size: 0.74rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold); opacity: 0.75;
+    }
+    .event-date-row .date-value {
+      font-family: var(--font-eth);
+      font-size: clamp(1.05rem, 3.2vw, 1.55rem);
+      color: var(--gold-light);
+      font-weight: 600;
+      margin-top: 5px;
+      text-shadow: 0 0 15px rgba(245, 200, 66, 0.5);
+    }
+    .event-date-row .date-latin {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--white); opacity: 0.65;
+      margin-top: 2px;
+    }
+
+    /* PROGRESS BAR */
+    .progress-section {
+      width: 100%; max-width: 860px;
+      margin-top: 24px;
+    }
+    .progress-label {
+      display: flex; justify-content: space-between;
+      font-family: var(--font-latin);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold); opacity: 0.7;
+      margin-bottom: 8px;
+    }
+    .progress-track {
+      width: 100%; height: 7px;
+      background: rgba(245, 200, 66, 0.15);
+      border-radius: 4px; overflow: hidden;
+      border: 1px solid rgba(245, 200, 66, 0.2);
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--crimson), var(--gold), var(--gold-light));
+      border-radius: 4px;
+      transition: width 1s linear;
+      box-shadow: 0 0 12px rgba(245, 200, 66, 0.6);
+    }
+
+    /* DAILY MOTIVATIONAL MESSAGE */
+    .daily-message {
+      width: 100%; max-width: 860px;
+      margin-top: 26px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 24px 30px;
+      backdrop-filter: blur(14px);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .daily-message::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--crimson-soft), var(--gold), var(--crimson-soft), transparent);
+    }
+    .daily-msg-title {
+      font-family: var(--font-eth);
+      font-size: 1.05rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .daily-msg-body {
+      font-family: var(--font-eth);
+      font-size: clamp(0.92rem, 2.6vw, 1.15rem);
+      color: var(--white);
+      opacity: 0.92;
+      line-height: 1.7;
+    }
+    .daily-msg-en {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.92rem;
+      color: var(--gold-light);
+      opacity: 0.7;
+      margin-top: 8px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      margin-top: 42px;
+      padding-bottom: 24px;
+    }
+    .footer-cross {
+      font-size: 1.6rem;
+      color: var(--gold); opacity: 0.65;
+      letter-spacing: 10px;
+    }
+    .footer-text {
+      font-family: var(--font-eth);
+      font-size: 0.85rem;
+      color: var(--gold-light); opacity: 0.5;
+      margin-top: 8px;
+    }
+
+    /* FLOATING GOLD PARTICLES */
+    .particle {
+      position: fixed; border-radius: 50%;
+      pointer-events: none; z-index: 2;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 580px) {
+      .timer-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .timer-box { aspect-ratio: 1 / 0.92; max-width: 100%; }
+      .logo-img { height: 95px; width: 95px; }
+      .countdown-card { padding: 26px 16px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-image" aria-hidden="true"></div>
+<div class="bg-overlay" aria-hidden="true"></div>
+<div class="bg-radiance" aria-hidden="true"></div>
+
+<!-- NOTIFICATION BANNER -->
+<div id="notification-banner" role="alert" aria-live="polite">
+  <span class="banner-icon">🔔</span>
+  <div class="banner-text">
+    <strong id="banner-label">📣 የዕለት ማሳወቂያ: </strong>
+    <span id="banner-msg"></span>
+  </div>
+  <button class="banner-dismiss" id="banner-close-btn" aria-label="Dismiss notification">✕</button>
+</div>
+
+<div id="particles-container" aria-hidden="true"></div>
+
+<div class="page-wrapper" id="page-wrapper">
+
+  <header>
+    <div class="logo-row">
+      <!-- Hamira Berhan Logo -->
+      <div class="logo-wrap">
+        <img src="logo-hamira.png" alt="ሐመረ ብርሃን – Hamira Berhan Logo" class="logo-img" />
+      </div>
+
+      <!-- Sacred Cross Divider -->
+      <div class="logo-divider">
+        <span class="cross-symbol">☩</span>
+      </div>
+
+      <!-- St. John Chrysostom -->
+      <div class="logo-wrap">
+        <img src="logo-kidus.png" alt="ቅዱስ ዮሐንስ አፈ ወርቅ – St. John Chrysostom" class="logo-img" />
+      </div>
+    </div>
+
+    <!-- Title Section -->
+    <div class="title-section">
+      <div class="org-name-eth">ሐመረ ብርሃን ቅዱስ ዮሐንስ አፈ ወርቅ</div>
+      <div class="org-name-en">Hamira Berhan · St. John Chrysostom</div>
+      <div class="decorative-rule"></div>
+      <div class="event-title">የህፃናት የክረምት ስልጠና መርሃ-ግብር</div>
+      <div class="event-sub">Children's Summer Training Program</div>
+
+      <!-- Ethiopian Date Badges -->
+      <div class="badges-row">
+        <div class="eth-date-badge">
+          <span class="label">Today</span>
+          <span class="date-eth" id="today-eth-date">...</span>
+        </div>
+        <div class="eth-date-badge">
+          <span class="label">Event Launch</span>
+          <span class="date-eth" id="event-eth-date">ነሐሴ ፳፰ · ፳፻፲፰</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- COUNTDOWN CARD -->
+  <section class="countdown-card" aria-label="Countdown timer">
+    <div class="countdown-heading" id="countdown-heading">— ቀሪ ጊዜ ወደ ፕሮግራሙ ጅምር / Time Remaining to Program Launch —</div>
+
+    <!-- Numeral Toggle -->
+    <div class="numeral-toggle" role="group" aria-label="Numeral style toggle">
+      <button class="numeral-btn active" id="btn-both"   onclick="setNumeralMode('both')">ሁለቱም / Both</button>
+      <button class="numeral-btn"        id="btn-geez"   onclick="setNumeralMode('geez')">ግዕዝ / Ge'ez</button>
+      <button class="numeral-btn"        id="btn-arabic" onclick="setNumeralMode('arabic')">Arabic</button>
+    </div>
+
+    <!-- Timer Grid -->
+    <div class="timer-grid" id="timer-grid">
+      <!-- Days -->
+      <div class="timer-unit">
+        <div class="timer-box">
+          <span class="num-geez"   id="days-geez">--</span>
+          <span class="num-arabic num-secondary" id="days-arabic">--</span>
+        </div>
+        <div class="unit-label-eth">ቀናት</div>
+        <div class="unit-label-en">Days</div>
+      </div>
+      <!-- Hours -->
+      <div class="timer-unit">
+        <div class="timer-box">
+          <span class="num-geez"   id="hours-geez">--</span>
+          <span class="num-arabic num-secondary" id="hours-arabic">--</span>
+        </div>
+        <div class="unit-label-eth">ሰዓታት</div>
+        <div class="unit-label-en">Hours</div>
+      </div>
+      <!-- Minutes -->
+      <div class="timer-unit">
+        <div class="timer-box">
+          <span class="num-geez"   id="minutes-geez">--</span>
+          <span class="num-arabic num-secondary" id="minutes-arabic">--</span>
+        </div>
+        <div class="unit-label-eth">ደቂቃዎች</div>
+        <div class="unit-label-en">Minutes</div>
+      </div>
+      <!-- Seconds -->
+      <div class="timer-unit">
+        <div class="timer-box">
+          <span class="num-geez"   id="seconds-geez">--</span>
+          <span class="num-arabic num-secondary" id="seconds-arabic">--</span>
+        </div>
+        <div class="unit-label-eth">ሰከንዶች</div>
+        <div class="unit-label-en">Seconds</div>
+      </div>
+    </div>
+
+    <!-- Event Date Row -->
+    <div class="event-date-row">
+      <div class="label">Program Launch Date (Ethiopian Calendar)</div>
+      <div class="date-value" id="launch-eth">ነሐሴ ፳፰ ቀን ፳፻፲፰ ዓ.ም</div>
+      <div class="date-latin">Thursday, September 03, 2026 · 8:00 AM Local Time</div>
+    </div>
+  </section>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-section">
+    <div class="progress-label">
+      <span>Preparation Progress</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- DAILY MOTIVATIONAL MESSAGE -->
+  <div class="daily-message" role="complementary" aria-label="Daily message">
+    <div class="daily-msg-title">✦ የዛሬ መልዕክት / Daily Inspiration ✦</div>
+    <div class="daily-msg-body" id="daily-msg-eth">Loading...</div>
+    <div class="daily-msg-en"   id="daily-msg-en"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-cross">☩ ☩ ☩</div>
+    <div class="footer-text">+ ንግባእኬ ኀበ ጥንተ ነገር + &nbsp;·&nbsp; © ፳፻፲፰ ዓ.ም</div>
+  </footer>
+
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   GE'EZ NUMERAL CONVERTER
+═══════════════════════════════════════════════════ */
+const GEEZ_ONES = ['', '፩', '፪', '፫', '፬', '፭', '፮', '፯', '፰', '፱'];
+const GEEZ_TENS = ['', '፲', '፳', '፴', '፵', '፶', '፷', '፸', '፹', '፺'];
+
+function toGeez(n) {
+  n = Math.max(0, Math.floor(n));
+  if (n === 0) return '0';
+  if (n >= 100) {
+    const h = Math.floor(n / 100);
+    const r = n % 100;
+    const hStr = h === 1 ? '' : toGeez(h);
+    const rStr = r === 0 ? '' : toGeez(r);
+    return hStr + '፻' + rStr;
+  }
+  return GEEZ_TENS[Math.floor(n / 10)] + GEEZ_ONES[n % 10];
+}
+
+/* ═══════════════════════════════════════════════════
+   ACCURATE ETHIOPIAN CALENDAR CONVERSION
+   (Aug 26, 2026 = Nehase 20, 2018 E.C.)
+═══════════════════════════════════════════════════ */
+const ETH_MONTHS = [
+  'መስከረም', 'ጥቅምት', 'ኅዳር', 'ታኅሣሥ', 'ጥር', 'የካቲት',
+  'መጋቢት', 'ሚያዝያ', 'ግንቦት', 'ሰኔ', 'ሐምሌ', 'ነሐሴ', 'ጳጉሜ'
+];
+
+function gregorianToEthiopian(date) {
+  const gYear = date.getFullYear();
+  const gMonth = date.getMonth(); // 0-11
+  const gDay = date.getDate();
+
+  // UTC timestamps for accurate day differences
+  const utcNow = Date.UTC(gYear, gMonth, gDay);
+  
+  // Ethiopian New Year for 2018 E.C. started on Sep 11, 2025
+  // Ethiopian New Year for 2019 E.C. starts on Sep 11, 2026
+  let ethYear = gYear - 8;
+  let ethNewYearUtc = Date.UTC(gYear - 1, 8, 11);
+  
+  if (utcNow >= Date.UTC(gYear, 8, 11)) {
+    ethYear = gYear - 7;
+    ethNewYearUtc = Date.UTC(gYear, 8, 11);
+  }
+
+  const diffDays = Math.floor((utcNow - ethNewYearUtc) / (86400 * 1000));
+  
+  let ethMonth = Math.floor(diffDays / 30) + 1;
+  let ethDay = (diffDays % 30) + 1;
+
+  if (ethMonth > 13) {
+    ethMonth = 13;
+  }
+
+  return { year: ethYear, month: ethMonth, day: ethDay };
+}
+
+function formatEthDateShort(date, mode) {
+  const eth = gregorianToEthiopian(date);
+  const monthName = ETH_MONTHS[eth.month - 1] || 'ነሐሴ';
+  if (mode === 'arabic') {
+    return `${monthName} ${eth.day} · ${eth.year}`;
+  } else if (mode === 'geez') {
+    const yrStr = toGeez(Math.floor(eth.year / 100)) + '፻' + toGeez(eth.year % 100);
+    return `${monthName} ${toGeez(eth.day)} · ${yrStr}`;
+  } else {
+    // Both mode
+    const yrGeez = toGeez(Math.floor(eth.year / 100)) + '፻' + toGeez(eth.year % 100);
+    return `${monthName} ${toGeez(eth.day)} (${eth.day}) · ${yrGeez}`;
+  }
+}
+
+function formatEventEthDate(mode) {
+  if (mode === 'arabic') {
+    return 'ነሐሴ 28 · 2018';
+  } else if (mode === 'geez') {
+    return 'ነሐሴ ፳፰ · ፳፻፲፰';
+  } else {
+    return 'ነሐሴ ፳፰ (28) · ፳፻፲፰';
+  }
+}
+
+function formatEventFullDate(mode) {
+  if (mode === 'arabic') {
+    return 'ነሐሴ 28 ቀን 2018 ዓ.ም';
+  } else if (mode === 'geez') {
+    return 'ነሐሴ ፳፰ ቀን ፳፻፲፰ ዓ.ም';
+  } else {
+    return 'ነሐሴ ፳፰ ቀን (28) ፳፻፲፰ ዓ.ም';
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   TARGET DATE: Nehase 28, 2018 E.C. = Thursday, Sep 03, 2026 08:00 AM
+═══════════════════════════════════════════════════ */
+const TARGET    = new Date(2026, 8, 3, 8, 0, 0); // Month is 0-indexed (8 = September)
+const ANNOUNCED = new Date(2026, 7, 10, 8, 0, 0); // August 10, 2026
+
+/* ═══════════════════════════════════════════════════
+   NUMERAL MODE (both | geez | arabic)
+═══════════════════════════════════════════════════ */
+let numeralMode = 'both';
+const lastValues = { d: -1, h: -1, m: -1, s: -1 };
+
+function setNumeralMode(mode) {
+  numeralMode = mode;
+  ['both', 'geez', 'arabic'].forEach(m => {
+    const btn = document.getElementById('btn-' + m);
+    if (btn) btn.classList.toggle('active', m === mode);
+  });
+  updateDynamicDates();
+  renderDisplay(lastValues.d, lastValues.h, lastValues.m, lastValues.s, false);
+  updateBannerText();
+}
+
+function updateDynamicDates() {
+  const today = new Date();
+  const todayBadge = document.getElementById('today-eth-date');
+  const eventBadge = document.getElementById('event-eth-date');
+  const launchTitle = document.getElementById('launch-eth');
+
+  if (todayBadge) todayBadge.innerHTML = formatEthDateShort(today, numeralMode);
+  if (eventBadge) eventBadge.innerHTML = formatEventEthDate(numeralMode);
+  if (launchTitle) launchTitle.innerHTML = formatEventFullDate(numeralMode);
+}
+
+function renderDisplay(d, h, m, s, anim) {
+  const units = [
+    ['days-geez',    'days-arabic',    d],
+    ['hours-geez',   'hours-arabic',   h],
+    ['minutes-geez', 'minutes-arabic', m],
+    ['seconds-geez', 'seconds-arabic', s],
+  ];
+
+  units.forEach(([gId, aId, val]) => {
+    const gEl = document.getElementById(gId);
+    const aEl = document.getElementById(aId);
+    if (!gEl || !aEl) return;
+
+    const gText = val === 0 ? '0' : toGeez(val);
+    const aText = String(val).padStart(2, '0');
+
+    if (gEl.innerHTML !== gText) {
+      gEl.innerHTML = gText;
+      if (anim) flashElement(gEl);
+    }
+    if (aEl.textContent !== aText) {
+      aEl.textContent = aText;
+      if (anim) flashElement(aEl);
+    }
+
+    if (numeralMode === 'geez') {
+      gEl.style.display = 'block';
+      gEl.classList.remove('num-secondary');
+      aEl.style.display = 'none';
+    } else if (numeralMode === 'arabic') {
+      gEl.style.display = 'none';
+      aEl.style.display = 'block';
+      aEl.classList.remove('num-secondary');
+    } else {
+      gEl.style.display = 'block';
+      gEl.classList.remove('num-secondary');
+      aEl.style.display = 'block';
+      aEl.classList.add('num-secondary');
+    }
+  });
+}
+
+function flashElement(el) {
+  el.classList.remove('num-flip');
+  void el.offsetWidth;
+  el.classList.add('num-flip');
+}
+
+/* ═══════════════════════════════════════════════════
+   COUNTDOWN TICK
+═══════════════════════════════════════════════════ */
+function tick() {
+  const now = new Date();
+  const diff = TARGET - now;
+
+  if (diff <= 0) {
+    renderDisplay(0, 0, 0, 0, false);
+    const heading = document.getElementById('countdown-heading');
+    if (heading) {
+      heading.textContent = '🎉 መርሃ-ግብሩ ተጀምሯል! / The Summer Training Program Has Launched!';
+      heading.style.color = '#ffe98a';
+    }
+    updateProgress(1);
+    return;
+  }
+
+  const totalSec = Math.floor(diff / 1000);
+  const s = totalSec % 60;
+  const m = Math.floor(totalSec / 60) % 60;
+  const h = Math.floor(totalSec / 3600) % 24;
+  const d = Math.floor(totalSec / 86400);
+
+  const changed = (d !== lastValues.d || h !== lastValues.h || m !== lastValues.m || s !== lastValues.s);
+  renderDisplay(d, h, m, s, changed);
+  Object.assign(lastValues, { d, h, m, s });
+
+  const totalSpan = TARGET - ANNOUNCED;
+  const elapsed = now - ANNOUNCED;
+  const pct = Math.min(1, Math.max(0, elapsed / totalSpan));
+  updateProgress(pct);
+}
+
+function updateProgress(pct) {
+  const p = Math.round(pct * 100);
+  const fill = document.getElementById('progress-fill');
+  const txt = document.getElementById('progress-pct');
+  if (fill) fill.style.width = p + '%';
+  if (txt) txt.textContent  = p + '%';
+}
+
+/* ═══════════════════════════════════════════════════
+   DAILY NOTIFICATION BANNER
+═══════════════════════════════════════════════════ */
+const BANNER_KEY = 'hamira_banner_dismissed_';
+
+function updateBannerText() {
+  const bannerMsg = document.getElementById('banner-msg');
+  if (!bannerMsg) return;
+
+  const diff = TARGET - new Date();
+  const daysLeft = Math.max(0, Math.floor(diff / 86400000));
+  const daysGeez = daysLeft === 0 ? '0' : toGeez(daysLeft);
+
+  let msg;
+  if (daysLeft === 0) {
+    msg = '🎉 ዛሬ የፕሮግራሙ ጅምር ቀን ነው! ሁሉም ሠራተኞችና አስተማሪዎች ዝግጁ ይሁኑ።';
+  } else if (daysLeft === 1) {
+    if (numeralMode === 'arabic') {
+      msg = 'ነገ የፕሮግራሙ ጅምር ነው! ቀሪ 1 ቀን ብቻ። የመጨረሻ ዝግጅቶቻችሁን አጠናቁ!';
+    } else if (numeralMode === 'geez') {
+      msg = 'ነገ የፕሮግራሙ ጅምር ነው! ቀሪ ፩ ቀን ብቻ። የመጨረሻ ዝግጅቶቻችሁን አጠናቁ!';
+    } else {
+      msg = 'ነገ የፕሮግራሙ ጅምር ነው! ቀሪ ቀን፡ ፩ (1) ቀን ብቻ። የመጨረሻ ዝግጅቶቻችሁን አጠናቁ!';
+    }
+  } else {
+    if (numeralMode === 'arabic') {
+      msg = `ለህፃናት የክረምት ስልጠና መርሃ-ግብር ቀሪ ቀናት፡ ${daysLeft} ቀናት። ዝግጅታችሁን አጠናቁ!`;
+    } else if (numeralMode === 'geez') {
+      msg = `ለህፃናት የክረምት ስልጠና መርሃ-ግብር ቀሪ ቀናት፡ ${daysGeez} ቀናት። ዝግጅታችሁን አጠናቁ!`;
+    } else {
+      msg = `ለህፃናት የክረምት ስልጠና መርሃ-ግብር ቀሪ ቀናት፡ ${daysGeez} (${daysLeft}) ቀናት። ዝግጅታችሁን አጠናቁ!`;
+    }
+  }
+  bannerMsg.textContent = msg;
+}
+
+function setupBanner() {
+  const banner = document.getElementById('notification-banner');
+  const wrapper = document.getElementById('page-wrapper');
+  const todayKey = BANNER_KEY + new Date().toISOString().slice(0, 10);
+
+  if (localStorage.getItem(todayKey) === '1') {
+    if (banner) banner.classList.add('hidden');
+    return;
+  }
+
+  updateBannerText();
+  if (wrapper) wrapper.classList.add('banner-open');
+
+  const closeBtn = document.getElementById('banner-close-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      if (banner) banner.classList.add('hidden');
+      if (wrapper) wrapper.classList.remove('banner-open');
+      localStorage.setItem(todayKey, '1');
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   DAILY MOTIVATIONAL MESSAGES (Rotates Dynamically)
+═══════════════════════════════════════════════════ */
+const DAILY_MESSAGES = [
+  { eth: 'ዛሬ እሑድ ነው። «ትጋትንና ፍቅርን ገንዘብ አድርጉ።» ለህፃናቱ ታላቅ ስልጠና በመንፈሳዊ ዝግጅት እንጀምር!', en: 'Sunday: Begin in prayer and dedication. Keep the spirit of readiness high for our children!' },
+  { eth: 'ሰኞ — አዲስ ሳምንት፣ አዲስ ጥንካሬ። ህፃናቱን በዕውቀትና በሥነ-ምግባር ለማነጽ ሁላችንም ዝግጁ እንሁን!', en: 'Monday: A fresh start! Let us prepare with full energy to nurture the children.' },
+  { eth: 'ማክሰኞ — ዝግጅት የመልካም ውጤት መሠረት ነው። እያንዳንዱ የስራ ክፍል ዝግጅቱን ያፋጥን!', en: 'Tuesday: Thorough preparation is the key to an inspiring training program.' },
+  { eth: 'ረቡዕ — ሳምንቱ እየተጋመሰ ነው። ለስልጠናው የሚያስፈልጉ ቁሳቁሶችና መርሃ-ግብሮች ተዘጋጅተዋል?', en: 'Wednesday: Midweek check — ensure all materials, rooms, and guides are ready.' },
+  { eth: 'ሐሙስ — ቀኑ ደርሷል! «የተዘራ መልካም ዘር ፍሬ ያፈራል።» ለልጆቹ ስኬት በሙሉ ልብ እንስራ!', en: 'Thursday: The day has arrived! Together, let us make this training impactful and memorable.' },
+  { eth: 'ዓርብ — የሳምንቱ ማጠቃለያ። ሁሉም ሠራተኞች ዝግጅታቸውን አጠናቀው ለመጪው ሳምንት ይዘጋጁ!', en: 'Friday: Excellent momentum! Finish your preparations with passion and excellence.' },
+  { eth: 'ቅዳሜ — የእረፍትና የዝግጅት ቀን። ለነገው መርሃ-ግብር መንፈሳዊና አካላዊ ዝግጁነታችሁን አጠናክሩ!', en: 'Saturday: Rest, reflect, and gather renewed strength for the journey ahead!' },
+];
+
+function setDailyMessage() {
+  const day = new Date().getDay();
+  const msg = DAILY_MESSAGES[day];
+  const ethEl = document.getElementById('daily-msg-eth');
+  const enEl = document.getElementById('daily-msg-en');
+  if (ethEl) ethEl.textContent = msg.eth;
+  if (enEl) enEl.textContent  = '"' + msg.en + '"';
+}
+
+/* ═══════════════════════════════════════════════════
+   FLOATING PARTICLES
+═══════════════════════════════════════════════════ */
+function createParticles() {
+  const container = document.getElementById('particles-container');
+  if (!container) return;
+  const count = window.innerWidth < 600 ? 12 : 24;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4.5 + 1.5;
+    const color = Math.random() > 0.5 ? '#f5c842' : '#c0392b';
+    p.style.cssText = `
+      width: ${size}px; height: ${size}px;
+      left: ${Math.random() * 100}vw;
+      background: ${color};
+      opacity: ${Math.random() * 0.6 + 0.2};
+      animation-duration: ${Math.random() * 14 + 10}s;
+      animation-delay: ${Math.random() * -18}s;
+    `;
+    container.appendChild(p);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   INITIALIZATION
+═══════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  createParticles();
+  updateDynamicDates();
+  setDailyMessage();
+  setupBanner();
+  tick();
+  setInterval(tick, 1000);
+});
+</script>
+</body>
+</html>
