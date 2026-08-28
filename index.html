@@ -799,8 +799,8 @@
     <!-- Event Date Row -->
     <div class="event-date-row">
       <div class="label">Program Launch Date (Ethiopian Calendar)</div>
-      <div class="date-value" id="launch-eth">ነሐሴ ፳፰ ቀን ፳፻፲፰ ዓ.ም</div>
-      <div class="date-latin">Thursday, September 03, 2026 · 8:00 AM Local Time</div>
+      <div class="date-value" id="launch-eth">ነሐሴ ፴ ቀን ፳፻፲፰ ዓ.ም</div>
+      <div class="date-latin">Saturday, September 05, 2026 · 8:00 AM Local Time</div>
     </div>
   </section>
 
@@ -1001,21 +1001,21 @@ function formatEthDateShort(date, mode) {
 }
 
 function formatEventEthDate(mode) {
-  if (mode === 'arabic') return 'ነሐሴ 28 · 2018';
-  if (mode === 'geez')   return 'ነሐሴ ፳፰ · ፳፻፲፰';
-  return 'ነሐሴ ፳፰ (28) · ፳፻፲፰';
+  if (mode === 'arabic') return 'ነሐሴ 30 · 2018';
+  if (mode === 'geez')   return 'ነሐሴ ፴ · ፳፻፲፰';
+  return 'ነሐሴ ፴ (30) · ፳፻፲፰';
 }
 
 function formatEventFullDate(mode) {
-  if (mode === 'arabic') return 'ነሐሴ 28 ቀን 2018 ዓ.ም';
-  if (mode === 'geez')   return 'ነሐሴ ፳፰ ቀን ፳፻፲፰ ዓ.ም';
-  return 'ነሐሴ ፳፰ ቀን (28) ፳፻፲፰ ዓ.ም';
+  if (mode === 'arabic') return 'ነሐሴ 30 ቀን 2018 ዓ.ም';
+  if (mode === 'geez')   return 'ነሐሴ ፴ ቀን ፳፻፲፰ ዓ.ም';
+  return 'ነሐሴ ፴ ቀን (30) ፳፻፲፰ ዓ.ም';
 }
 
 /* ═══════════════════════════════════════════════════
-   TARGET DATE: Nehase 28, 2018 E.C. = Thursday, Sep 03, 2026 08:00 AM
+   TARGET DATE: Nehase 30, 2018 E.C. = Saturday, Sep 05, 2026 08:00 AM
 ═══════════════════════════════════════════════════ */
-const TARGET    = new Date(2026, 8, 3, 8, 0, 0); // Month 8 = September
+const TARGET    = new Date(2026, 8, 5, 8, 0, 0); // Month 8 = September
 const ANNOUNCED = new Date(2026, 7, 10, 8, 0, 0); // August 10, 2026
 
 /* ═══════════════════════════════════════════════════
